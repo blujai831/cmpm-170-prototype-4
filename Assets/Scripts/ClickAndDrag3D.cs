@@ -52,6 +52,9 @@ public class ClickAndDrag3D : MonoBehaviour
                 _raycastHit.point - Camera.main.transform.position
             ).magnitude;
         }
+        if (transform.position.y < -1) {
+            Destroy(gameObject);
+        }
     }
 
     private bool UpdateMousePositionAndReturnWhetherSelected() {
