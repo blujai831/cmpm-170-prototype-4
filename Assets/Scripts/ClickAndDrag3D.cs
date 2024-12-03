@@ -82,7 +82,7 @@ public class ClickAndDrag3D : MonoBehaviour
                 naiveWorldSpaceComparisonPosn - naiveWorldSpacePosn;
             if (Physics.Raycast(
                 naiveWorldSpacePosn, direction, out _raycastHit
-            )) {
+            ) && _raycastHit.collider == _collider) {
                 _lastKnownMousePosition = _raycastHit.point;
                 selected = true;
             } else {
