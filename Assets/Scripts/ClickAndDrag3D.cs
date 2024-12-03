@@ -32,7 +32,8 @@ public class ClickAndDrag3D : MonoBehaviour
     {
         var selected = UpdateMousePositionAndReturnWhetherSelected();
         var mousePressed = Mouse.current.leftButton.isPressed;
-        if (!mousePressed) {
+        var mousePressedThisFrame = Mouse.current.leftButton.wasPressedThisFrame;
+        if (!mousePressed && !mousePressedThisFrame) {
             _dragging = false;
         } else if (_dragging) {
             var worldPosnClicked = transform.TransformPoint(_positionClicked);
@@ -43,7 +44,7 @@ public class ClickAndDrag3D : MonoBehaviour
                 ),
                 worldPosnClicked
             );
-        } else if (selected && Mouse.current.leftButton.wasPressedThisFrame) {
+        } else if (selected && mousePressedThisFrame) {
             _dragging = true;
             _positionClicked =
                 transform.InverseTransformPoint(_raycastHit.point);
