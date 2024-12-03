@@ -36,13 +36,20 @@ public class ScannerLaser : MonoBehaviour
         Vector3[] colliderVertices = new Vector3[] {
             Vector3.zero,
             new Vector3(-size/2, 0, height),
-            new Vector3(size/2, 0, height)
+            new Vector3(size/2, 0, height),
+            Vector3.up*-0.1f,
+            new Vector3(-size/2, -0.1f, height),
+            new Vector3(size/2, -0.1f, height)
         };
 
         // Define the triangle indices
         int[] triangles = new int[]
         {
             0, 1, 2
+        };
+
+        int[] colliderTriangles = new int[] {
+            0, 1, 2, 3, 4, 5
         };
 
         // Apply to mesh
@@ -59,7 +66,7 @@ public class ScannerLaser : MonoBehaviour
 
         meshCollider.sharedMesh = new Mesh();
         meshCollider.sharedMesh.vertices = colliderVertices;
-        meshCollider.sharedMesh.triangles = triangles;
+        meshCollider.sharedMesh.triangles = colliderTriangles;
         meshCollider.sharedMesh.RecalculateNormals();
         meshCollider.convex = true;
         meshCollider.isTrigger = true;
@@ -142,6 +149,6 @@ public class ScannerLaser : MonoBehaviour
             Camera.main.transform.right
         ));
         //Debug.Log($"{forwardAlignment} {rollAlignment}");
-        return forwardAlignment > 0 && rollAlignment > 0.75;
+        return forwardAlignment > 0.0f && rollAlignment > 0.97f;
     }
 }
