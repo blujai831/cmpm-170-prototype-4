@@ -43,7 +43,7 @@ public class ClickAndDrag3D : MonoBehaviour
                 ),
                 worldPosnClicked
             );
-        } else if (selected) {
+        } else if (selected && Mouse.current.leftButton.wasPressedThisFrame) {
             _dragging = true;
             _positionClicked =
                 transform.InverseTransformPoint(_raycastHit.point);
