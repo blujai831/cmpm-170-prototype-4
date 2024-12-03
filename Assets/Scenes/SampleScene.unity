@@ -1295,7 +1295,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mouseDragAggression: 0.03
-  _scrollSensitivity: 0.01
+  _scrollSensitivity: 0.005
 --- !u!54 &2077384214
 Rigidbody:
   m_ObjectHideFlags: 0
