@@ -17,7 +17,19 @@ public class GrocerySpawner : MonoBehaviour
             var posn = new Vector3(0.0f, 12.0f + (float) count*3.0f, 0.0f);
             var i = ((int) (UnityEngine.Random.Range(0.0f, (float) groceries.Count))) % groceries.Count;
             var grocery = Instantiate(groceries[i], posn, Quaternion.identity);
-            grocery.GetComponent<DropPenalty>().scoreScript = scoreScript;
+            var dropPenalty = grocery.GetComponent<DropPenalty>();
+            dropPenalty.scoreScript = scoreScript;
+            dropPenalty.spawnerScript = this;
+        }
+    }
+
+    public void CheckForNoGroceriesLater(float when = 0.1f) {
+        Invoke("CheckForNoGroceriesImmediately", when);
+    }
+
+    private void CheckForNoGroceriesImmediately() {
+        if (GameObject.FindGameObjectsWithTag("Barcode").Length == 0) {
+            SpawnGroceries();
         }
     }
 }
