@@ -686,10 +686,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 20
-  grocery1: {fileID: 8394441259738007195, guid: 90860f12fac1ac5e7913fa35366dc40a, type: 3}
-  grocery2: {fileID: 6692055046371342867, guid: 49b40c5761566360b985efece53a776e, type: 3}
   scoreScript: {fileID: 435127373}
   timerScript: {fileID: 96967529}
+  spawnerScript: {fileID: 1911544175}
 --- !u!114 &551022893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,6 +1506,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1911544174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1911544176}
+  - component: {fileID: 1911544175}
+  m_Layer: 0
+  m_Name: GrocerySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1911544175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911544174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cb45f027abedea25ae513b553525ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groceries:
+  - {fileID: 6692055046371342867, guid: 49b40c5761566360b985efece53a776e, type: 3}
+  - {fileID: 8209963137532378288, guid: 04a112212241273cdadee09916620608, type: 3}
+--- !u!4 &1911544176
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911544174}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.36272806, y: 4.606865, z: -2.1953773}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1997228950 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5eee4f4e6e0e6a9a9aabb073afed57d6, type: 3}
@@ -1679,3 +1725,4 @@ SceneRoots:
   - {fileID: 443658990}
   - {fileID: 758229608}
   - {fileID: 1727056195}
+  - {fileID: 1911544176}

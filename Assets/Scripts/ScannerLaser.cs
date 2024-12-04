@@ -12,10 +12,9 @@ public class ScannerLaser : MonoBehaviour
     private MeshCollider meshCollider;
     private List<GameObject> correctlyAlignedBarcodes;
     private List<GameObject> successfullyScannedBarcodes;
-    [SerializeField] private GameObject grocery1;
-    [SerializeField] private GameObject grocery2;
     [SerializeField] private Score scoreScript;
     [SerializeField] private Timer timerScript;
+    [SerializeField] private GrocerySpawner spawnerScript;
 
 
     // Start is called before the first frame update
@@ -141,7 +140,7 @@ public class ScannerLaser : MonoBehaviour
         Invoke("TurnRed", 0.5f);
         DestroyGroceries(); //despawn scanned groceries, can later change to be moved/animated
         timerScript.ResetTimer(); //successful so reset timer
-        Invoke("SpawnRandom", 1.0f);
+        spawnerScript.SpawnGroceries(1.0f);
     }
 
     void TurnGreen() {
@@ -160,17 +159,6 @@ public class ScannerLaser : MonoBehaviour
         ));
         //Debug.Log($"{forwardAlignment} {rollAlignment}");
         return forwardAlignment > 0.0f && rollAlignment > 0.87f;
-    }
-
-    void SpawnRandom() {
-        for (int count = (int) UnityEngine.Random.Range(1.0f, 5.0f); count > 0; --count) {
-            var posn = new Vector3(0.0f, 12.0f + (float) count, 0.0f);
-            if (UnityEngine.Random.Range(0.0f, 1.0f) < 0.5f) {
-                Instantiate(grocery1, posn, Quaternion.identity);
-            } else {
-                Instantiate(grocery2, posn, Quaternion.identity);
-            }
-        }
     }
 
     void DestroyGroceries()
