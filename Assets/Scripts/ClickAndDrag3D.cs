@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -85,7 +86,8 @@ public class ClickAndDrag3D : MonoBehaviour
             var direction =
                 naiveWorldSpaceComparisonPosn - naiveWorldSpacePosn;
             if (Physics.Raycast(
-                naiveWorldSpacePosn, direction, out _raycastHit
+                naiveWorldSpacePosn, direction, out _raycastHit,
+                Single.PositiveInfinity, -1, QueryTriggerInteraction.Ignore
             ) && _raycastHit.collider == _collider) {
                 _lastKnownMousePosition = _raycastHit.point;
                 selected = true;
