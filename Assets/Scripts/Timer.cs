@@ -4,26 +4,33 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Timer : MonoBehaviour
 {
     public Image circleImage;
     public float totalTime = 5f;
     [SerializeField] private float timeRemaining;
-    //[SerializeField] private Button playAgainButton;
-    //[SerializeField] private Button scanButton;
-    //[SerializeField] private TMP_Text highScoreText;
-    //[SerializeField] private SpawnManager spawnManager;
+    [SerializeField] RawImage[] strikes;
+    private int numStrikes;
+    [SerializeField] private Button playAgainButton;
+    [SerializeField] private TMP_Text highScoreText;
+    [SerializeField] private Score scoreScript;
 
     void Start()
     {
         timeRemaining = totalTime;
         circleImage.fillAmount = 1f;
-        //playAgainButton.onClick.AddListener(PlayAgain);
-        //playAgainButton.gameObject.SetActive(false);
-        //scanButton.gameObject.SetActive(true);
-        //highScoreText.gameObject.SetActive(false);
-        //if (PlayerPrefs.GetInt("highscore") == 0) PlayerPrefs.SetInt("highscore", 0);
+
+        numStrikes = 0;
+        strikes[0].gameObject.SetActive(false);
+        strikes[1].gameObject.SetActive(false);
+        strikes[2].gameObject.SetActive(false);
+
+        playAgainButton.onClick.AddListener(PlayAgain);
+        playAgainButton.gameObject.SetActive(false);
+        highScoreText.gameObject.SetActive(false);
+        if (PlayerPrefs.GetInt("highscore") == 0) PlayerPrefs.SetInt("highscore", 0);
     }
 
     void Update()
@@ -36,19 +43,17 @@ public class Timer : MonoBehaviour
         else
         {
             circleImage.fillAmount = 0f;
-            //GameEnded();
+            AddStrike();
         }
     }
 
-    /*
     void GameEnded()
     {
         playAgainButton.gameObject.SetActive(true);
-        scanButton.gameObject.SetActive(false);
         highScoreText.gameObject.SetActive(true);
-        if(spawnManager.GetScore() > PlayerPrefs.GetInt("highscore"))
+        if(scoreScript.GetScore() > PlayerPrefs.GetInt("highscore"))
         {
-            PlayerPrefs.SetInt("highscore", spawnManager.GetScore());
+            PlayerPrefs.SetInt("highscore", scoreScript.GetScore());
         }
         highScoreText.text = "High Score: " + PlayerPrefs.GetInt("highscore").ToString();
 
@@ -58,7 +63,6 @@ public class Timer : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-    */
     public float GetTimeRemaining()
     {
         return timeRemaining;
@@ -66,5 +70,24 @@ public class Timer : MonoBehaviour
 
     public void SetTimeRemaining(float timeSeconds){
         timeRemaining = timeSeconds;
+    }
+
+    public void ResetTimer()
+    {
+        timeRemaining = totalTime;
+    }
+
+    void AddStrike()
+    {
+        if(numStrikes <= 2)
+        {
+            strikes[numStrikes].gameObject.SetActive(true);
+            numStrikes++;
+            if(numStrikes < 2) ResetTimer();
+        }
+        else
+        {
+            GameEnded();
+        }
     }
 }

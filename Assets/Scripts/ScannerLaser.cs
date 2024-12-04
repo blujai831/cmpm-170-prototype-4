@@ -14,6 +14,8 @@ public class ScannerLaser : MonoBehaviour
     private List<GameObject> successfullyScannedBarcodes;
     [SerializeField] private GameObject grocery1;
     [SerializeField] private GameObject grocery2;
+    [SerializeField] private Score scoreScript;
+    [SerializeField] private Timer timerScript;
 
 
     // Start is called before the first frame update
@@ -128,12 +130,17 @@ public class ScannerLaser : MonoBehaviour
     }
 
     void FlushBarcodes() {
+        int numBarcodes = 0;
         foreach (GameObject gobj in correctlyAlignedBarcodes) {
             successfullyScannedBarcodes.Add(gobj);
+            numBarcodes++;
         }
         correctlyAlignedBarcodes.Clear();
         TurnGreen();
+        scoreScript.UpdateScore(numBarcodes);
         Invoke("TurnRed", 0.5f);
+        DestroyGroceries(); //despawn scanned groceries, can later change to be moved/animated
+        timerScript.ResetTimer(); //successful so reset timer
         Invoke("SpawnRandom", 1.0f);
     }
 
@@ -164,5 +171,16 @@ public class ScannerLaser : MonoBehaviour
                 Instantiate(grocery2, posn, Quaternion.identity);
             }
         }
+    }
+
+    void DestroyGroceries()
+    {
+        int numGroceries = successfullyScannedBarcodes.Count;
+        for (int i = 0; i < numGroceries; i++)
+        {
+            Destroy(successfullyScannedBarcodes[0].gameObject.transform.parent.gameObject);
+            successfullyScannedBarcodes.RemoveAt(0);
+        }
+        successfullyScannedBarcodes.Clear();
     }
 }

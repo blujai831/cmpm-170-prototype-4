@@ -94,6 +94,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple
       objectReference: {fileID: 0}
+    - target: {fileID: 3683010756046081282, guid: 557cc44b83cc64a178b82b405dc4ece1, type: 3}
+      propertyPath: m_TagString
+      value: Grocery
+      objectReference: {fileID: 0}
     - target: {fileID: 3983730727009178249, guid: 557cc44b83cc64a178b82b405dc4ece1, type: 3}
       propertyPath: m_LocalScale.x
       value: 304.97
