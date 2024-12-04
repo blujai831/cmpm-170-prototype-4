@@ -1227,6 +1227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cheese
       objectReference: {fileID: 0}
+    - target: {fileID: 8113209449765756021, guid: 49b40c5761566360b985efece53a776e, type: 3}
+      propertyPath: scoreScript
+      value: 
+      objectReference: {fileID: 435127373}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1539,6 +1543,7 @@ MonoBehaviour:
   - {fileID: 6692055046371342867, guid: 49b40c5761566360b985efece53a776e, type: 3}
   - {fileID: 8209963137532378288, guid: 04a112212241273cdadee09916620608, type: 3}
   - {fileID: 8394441259738007195, guid: 90860f12fac1ac5e7913fa35366dc40a, type: 3}
+  scoreScript: {fileID: 435127373}
 --- !u!4 &1911544176
 Transform:
   m_ObjectHideFlags: 0

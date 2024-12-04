@@ -170,6 +170,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3988858065d839488be148262666359, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3895646834206532392}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f3988858065d839488be148262666359, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1246276395536486875}
   m_SourcePrefab: {fileID: 100100000, guid: f3988858065d839488be148262666359, type: 3}
 --- !u!1 &8209963137532378288 stripped
 GameObject:
@@ -239,6 +242,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mouseDragAggression: 0.03
   _scrollSensitivity: 0.005
+--- !u!114 &1246276395536486875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8209963137532378288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbf1b026b8266f6dbc7898ddbaf64be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreScript: {fileID: 0}
 --- !u!4 &8837317377631413770 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f3988858065d839488be148262666359, type: 3}
