@@ -11,12 +11,14 @@ public class ScannerLaser : MonoBehaviour
     [SerializeField] private Timer timerScript;
     [SerializeField] private GrocerySpawner spawnerScript;
 
+    private bool customerBlocking;
 
     // Start is called before the first frame update
     void Start()
     {
         correctlyAlignedBarcodes = new List<GameObject>();
         successfullyScannedBarcodes = new List<GameObject>();
+        customerBlocking = false;
     }
 
     // Update is called once per frame
@@ -31,10 +33,23 @@ public class ScannerLaser : MonoBehaviour
             BarcodeCorrectlyAligned(gobj);
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (IsCorrectlyAlignedAndUnscannedBarcode(other.gameObject)) {
+    void OnTriggerEnter(Collider other)
+    {
+
+        // If customer hit, turn off laser
+        if (other.gameObject.CompareTag("Customer"))
+        {
+            TurnClear();
+            customerBlocking = true;
+        }
+
+
+        // if barcode hit, add barcode to list
+        if (IsCorrectlyAlignedAndUnscannedBarcode(other.gameObject))
+        {
             correctlyAlignedBarcodes.Add(other.gameObject);
-            if (AllBarcodesAligned()) {
+            if (AllBarcodesAligned() && !customerBlocking)
+            {
                 FlushBarcodes();
             }
         }
@@ -42,6 +57,12 @@ public class ScannerLaser : MonoBehaviour
 
     void OnTriggerExit(Collider other) {
         correctlyAlignedBarcodes.Remove(other.gameObject);
+
+        if (other.gameObject.CompareTag("Customer"))
+        {
+            TurnRed();
+            customerBlocking = false;
+        }
     }
 
     bool AllBarcodesAligned() {
@@ -76,6 +97,11 @@ public class ScannerLaser : MonoBehaviour
 
     void TurnRed() {
         GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.red);
+    }
+
+    void TurnClear()
+    {
+        GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", Color.clear);
     }
 
     bool BarcodeCorrectlyAligned(GameObject gobj) {
